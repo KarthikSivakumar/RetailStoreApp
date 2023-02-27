@@ -3,4 +3,12 @@
   <main class="container">
     <router-outlet></router-outlet>
   </main>
+  <app-modal id="product-edit">
+    <h1>Edit Product</h1>
+    <button (click)="modalService.close();">Close</button>
+  </app-modal>
+  <app-modal id="store-edit">
+    <h1>Edit Store</h1>
+    <button (click)="modalService.close();">Close</button>
+  </app-modal>
 </body>

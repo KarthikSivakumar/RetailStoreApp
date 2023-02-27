@@ -1,7 +1,22 @@
-<h1>Counter</h1>
+<h1 id="tableLabel">Stores</h1>
 
-<p>This is a simple example of an Angular component.</p>
+<p *ngIf="!Stores?.length"><em>Loading...</em></p>
 
-<p aria-live="polite">Current count: <strong>{{ currentCount }}</strong></p>
-
-<button class="btn btn-primary" (click)="incrementCounter()">Increment</button>
+<table id="StoresTable" class='table table-striped' aria-labelledby="tableLabel" *ngIf="Stores.length" >
+  <thead>
+    <tr>
+      <th>Store ID</th>
+      <th>Store Name</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let store of Stores">
+      <td>{{ store.storeId }}</td>
+      <td>{{ store.storeName }}</td>
+      <td>
+        <div class="col-md-6"><button (click)="modalService.open('store-edit');" class="btn-primary">Edit</button></div>
+      </td>
+    </tr>
+  </tbody>
+</table>

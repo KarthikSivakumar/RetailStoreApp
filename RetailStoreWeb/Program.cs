@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddTransient<IProductRepository,ProductService>(_=>new ProductService(new RetailStoreDBContext(builder.Configuration)));
+builder.Services.AddTransient<IStoreRepository,StoreService>(_=>new StoreService(new RetailStoreDBContext(builder.Configuration)));
 builder.Services.AddControllersWithViews();
 builder.Services.AddCors(options=>
 options.AddPolicy(

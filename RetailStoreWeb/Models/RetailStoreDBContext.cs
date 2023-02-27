@@ -17,11 +17,11 @@ public partial class RetailStoreDBContext : DbContext
         _config = config;
     }
 
-    public virtual DbSet<Product> Products { get; set; }
+    public virtual DbSet<Product>? Products { get; set; }
 
-    public virtual DbSet<ProductsStaging> ProductsStagings { get; set; }
+    public virtual DbSet<ProductsStaging>? ProductsStagings { get; set; }
 
-    public virtual DbSet<Store> Stores { get; set; }
+    public virtual DbSet<Store>? Stores { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
       => optionsBuilder.UseSqlServer(_config.GetConnectionString("ProductsDB"));

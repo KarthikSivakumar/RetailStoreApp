@@ -23,7 +23,20 @@ namespace RetailStoreWeb.Services
         {
             get
             {
-                return _productContext.Set<Product>().ToList();
+                return _productContext.Set<Product>()
+                .Select(x =>
+                new Product
+                {
+                    Sku = x.Sku,
+                    ProductName=x.ProductName,
+                    StoreId = x.StoreId,
+                    StoreName = x.Store.StoreName,
+                    Price = x.Price,
+                    EffectiveStartDate = x.EffectiveStartDate,
+                    EffectiveEndDate = x.EffectiveEndDate,
+                    Active = x.Active
+                })
+                .ToList();
             }
         }
         public async Task<Product> Create(Product newProduct)
@@ -68,11 +81,11 @@ namespace RetailStoreWeb.Services
         }
         public async Task<int> BulkCreateOrUpdate(IEnumerable<Product> products)
         {
-            int exitcode =0;
-            _config.CalculateStats=true;
-            await _productContext.BulkInsertAsync<Product>(products.ToList(),_config);
+            int exitcode = 0;
+            _config.CalculateStats = true;
+            await _productContext.BulkInsertAsync<Product>(products.ToList(), _config);
             exitcode = _config.StatsInfo.StatsNumberInserted;
             return exitcode;
-        }       
+        }
     }
 }

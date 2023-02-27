@@ -2,7 +2,7 @@
 
 <p *ngIf="!products?.length"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="products.length">
+<table id="productsTable" class='table table-striped' aria-labelledby="tableLabel" *ngIf="products.length" >
   <thead>
     <tr>
       <th>Sku</th>
@@ -21,7 +21,7 @@
       <td>{{ product.price }}</td>
       <td>{{ product.effectiveStartDate | date:'short'}}</td>
       <td>
-        <div class="col-md-6"><button class="btn-primary">Edit</button></div>
+        <div class="col-md-6"><button (click)="modalService.open('product-edit');" class="btn-primary">Edit</button></div>
       </td>
     </tr>
   </tbody>
